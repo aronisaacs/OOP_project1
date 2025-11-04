@@ -2,8 +2,8 @@
  * HumanPlayer class represents a human player in the game.
  * It implements the Player interface and allows the user to input their move via the console.
  * The player is prompted to enter coordinates in the format "rowcol" (e.g., "12" for row 1, column 2).
- * The input is validated to ensure it is within the board's bounds and the chosen position is not already occupied.
- * If the input is invalid, the player is prompted to enter a valid position.
+ * The input is validated to ensure it is within the board's bounds and the chosen position
+ * is not already occupied. If the input is invalid, the player is prompted to enter a valid position.
  * @see Player
  * @see KeyboardInput
  * @author aron isaacs

@@ -3,8 +3,8 @@
  * @see Player
  * @see HumanPlayer
  * @see WhateverPlayer
- * @see CleverPlayer
- * @see GeniusPlayer
+ * @see NaivePlayer
+ * @see SmartPlayer
  * @author aron isaacs
  */
 public class PlayerFactory {
@@ -25,8 +25,8 @@ public class PlayerFactory {
         return switch (playerType.toLowerCase()) {
             case "human" -> new HumanPlayer();
             case "whatever" -> new WhateverPlayer();
-            case "clever" -> new CleverPlayer();
-            case "genius" -> new GeniusPlayer();
+            case "naive" -> new NaivePlayer();
+            case "smart" -> new SmartPlayer();
             default -> null;
         };
     }

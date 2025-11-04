@@ -1,0 +1,42 @@
+aronisaacs
+342808292
+
+######################################################
+Questions:
+
+your_username
+your_id
+
+1. Automatic Player Strategies:
+
+• WhateverPlayer:
+  Selects a move uniformly at random from all currently empty squares on the board.
+  This player does not analyze board state or attempt to create / block winning sequences.
+
+• NaivePlayer:
+  Scans the board from top-left to bottom-right.
+  The first square found that is empty is selected, and the player's mark is placed there.
+  This is a deterministic “first available square” strategy.
+
+• SmartPlayer:
+  First checks for horizontal threats made by the opponent:
+  For each row, if the opponent has (winStreak - 1) marks in a row and there is one remaining blank
+  needed to complete the streak, the SmartPlayer places its mark in that blank to block the threat.
+  If no such threat exists, the player selects the *last* available empty square on the board
+  by scanning from bottom-right to top-left.
+  This strategy reliably outperforms both WhateverPlayer and NaivePlayer, achieving the required
+  win rate in large tournaments.
+
+2. Use of the Player Interface (OOP Design):
+
+All player classes implement the same Player interface.
+This allows the Game and Tournament classes to interact with players without knowing their internal
+implementation details.
+.
+The design is based on the **polymorphism** pillar of object-oriented programming.
+By treating each player as a "Player" rather than a specific class, the code is cleaner, extendable,
+and supports adding new strategies in the future without modifying the game flow.
+
+3. Additional Classes Added:
+
+No additional classes were added beyond those required in the assignment specification.

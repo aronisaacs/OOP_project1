@@ -7,7 +7,7 @@
  * @see Player
  * @author aron isaacs
  */
-public class CleverPlayer implements Player {
+public class NaivePlayer implements Player {
 
     /**
      * Plays a turn by placing the given mark in the first available blank position on the board,

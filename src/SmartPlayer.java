@@ -4,7 +4,7 @@
  * @see Player
  * @author aron isaacs
  */
-public class GeniusPlayer implements Player {
+public class SmartPlayer implements Player {
 
     /**
      * Plays a turn by first checking for horizontal threats from the opponent and blocking them.
@@ -23,7 +23,9 @@ public class GeniusPlayer implements Player {
             for (int col = 0; col < size; col++) {
                 if (board.getMark(row, col) == Mark.BLANK) {
                     // Check the two squares to the left
-                    if (col >= 2 && board.getMark(row, col - 1) == opponentMark && board.getMark(row, col - 2) == opponentMark) {
+                    if (col >= 2 && board.getMark(row, col - 1)
+							== opponentMark && board.getMark(row, col - 2)
+							== opponentMark) {
                         board.putMark(mark, row, col);
                         return;
                     }
