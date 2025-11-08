@@ -20,6 +20,30 @@ public class SmartPlayer implements Player {
 		int size = board.getSize();
 		Mark opponentMark = (mark == Mark.X) ? Mark.O : Mark.X;
 
+		if (detectHorizontalThreat(board, mark, size, opponentMark)) return;
+
+		// otherwise: Pick the last available square
+		for (int row = size - 1; row >= 0; row--) {
+			for (int col = size - 1; col >= 0; col--) {
+				if (board.getMark(row, col) == Mark.BLANK) {
+					board.putMark(mark, row, col);
+					return;
+				}
+			}
+		}
+	}
+
+	/*
+	 * Detects horizontal threats from the opponent and blocks them by placing the player's mark
+	 * in the threatened position.
+	 *
+	 * @param board        the game board
+	 * @param mark         the player's mark
+	 * @param size         the size of the board
+	 * @param opponentMark the opponent's mark
+	 * @return true if a threat was detected and blocked, false otherwise
+	 */
+	private boolean detectHorizontalThreat(Board board, Mark mark, int size, Mark opponentMark) {
 		// Check for horizontal threats and block
 		for (int row = 0; row < size; row++) {
 			for (int col = 0; col < size; col++) {
@@ -29,21 +53,12 @@ public class SmartPlayer implements Player {
 							== opponentMark && board.getMark(row, col - 2)
 							== opponentMark) {
 						board.putMark(mark, row, col);
-						return;
+						return true;
 					}
 
 				}
 			}
 		}
-
-		// Fallback: Pick the last available square
-		for (int row = size - 1; row >= 0; row--) {
-			for (int col = size - 1; col >= 0; col--) {
-				if (board.getMark(row, col) == Mark.BLANK) {
-					board.putMark(mark, row, col);
-					return;
-				}
-			}
-		}
+		return false;
 	}
 }
