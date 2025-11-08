@@ -33,7 +33,7 @@ public class WhateverPlayer implements Player {
 			}
 		}
 		// Select a random index from the collected empty squares
-		int randomIndex = rand.nextInt(index); //check this is what i want
+		int randomIndex = rand.nextInt(index); //check this is what I want
 		int boardIndex = emptySquares[randomIndex];
 		board.putMark(mark, boardIndex / size, boardIndex % size);
 	}
