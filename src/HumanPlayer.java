@@ -4,49 +4,49 @@
  * The player is prompted to enter coordinates in the format "rowcol" (e.g., "12" for row 1, column 2).
  * The input is validated to ensure it is within the board's bounds and the chosen position
  * is not already occupied. If the input is invalid, the player is prompted to enter a valid position.
+ *
+ * @author aron isaacs
  * @see Player
  * @see KeyboardInput
- * @author aron isaacs
  */
-class HumanPlayer implements Player {
+public class HumanPlayer implements Player {
 
-    /**
-     * Default constructor.
-     */
-    HumanPlayer() {}
+	public static final String USER_PROMPT = "Player %s, type coordinates: \n";
+	public static final String OUT_OF_BOUNDS_ERROR = "Invalid mark position. Please choose a valid " +
+			"position:";
+	public static final String ALREADY_OCCUPIED_ERROR =
+			"Mark position is already occupied. Please choose a valid position:";
 
-    /**
-     * Plays a turn by prompting the user to input coordinates for their mark.
-     * Validates the input to ensure it is within bounds and the position is not already occupied.
-     * If the input is invalid, prompts the user to enter a valid position until a valid move is made.
-     * @param board the game board where the mark will be placed
-     * @param mark the mark (X or O) to be placed on the board
-     */
-    @Override
-    public void playTurn(Board board, Mark mark) {
-        System.out.printf("Player %s, type coordinates: \n", mark.toString());
-        while (true) {
-            int input = KeyboardInput.readInt();
+	/**
+	 * Default constructor.
+	 */
+	public HumanPlayer() {
+	}
 
-            // Extract row and column from the input
-            int row = input / 10;
-            int col = input % 10;
+	/**
+	 * Plays a turn by prompting the user to input coordinates for their mark.
+	 * Validates the input to ensure it is within bounds and the position is not already occupied.
+	 * If the input is invalid, prompts the user to enter a valid position until a valid move is made.
+	 *
+	 * @param board the game board where the mark will be placed
+	 * @param mark  the mark (X or O) to be placed on the board
+	 */
+	@Override
+	public void playTurn(Board board, Mark mark) {
+		System.out.printf(USER_PROMPT, mark.toString());
+		while (true) {
+			int input = KeyboardInput.readInt();
 
-            // Validate the input
-            if (row < 0 || row >= board.getSize() || col < 0 || col >= board.getSize()) {
-                System.out.println("Invalid mark position. Please choose a valid position:");
-                continue;
-            }
+			// Extract row and column from the input
+			int row = input / 10;
+			int col = input % 10;
 
-            // Check if the position is already occupied
-            if (board.getMark(row, col) != Mark.BLANK) {
-                System.out.println("Mark position is already occupied. Please choose a valid position:");
-                continue;
-            }
-
-            // Place the mark and exit the loop
-            board.putMark(mark, row, col);
-            break;
-        }
-    }
+			// Validate the input
+			if (!board.putMark(mark, row, col)) {
+				System.out.println(OUT_OF_BOUNDS_ERROR);
+				continue;
+			}
+			break;
+		}
+	}
 }

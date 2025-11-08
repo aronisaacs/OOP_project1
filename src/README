@@ -4,9 +4,6 @@ aronisaacs
 ######################################################
 Questions:
 
-your_username
-your_id
-
 1. Automatic Player Strategies:
 
 • WhateverPlayer:
@@ -33,7 +30,7 @@ All player classes implement the same Player interface.
 This allows the Game and Tournament classes to interact with players without knowing their internal
 implementation details.
 .
-The design is based on the **polymorphism** pillar of object-oriented programming.
+The design is based on polymorphism.
 By treating each player as a "Player" rather than a specific class, the code is cleaner, extendable,
 and supports adding new strategies in the future without modifying the game flow.
 
